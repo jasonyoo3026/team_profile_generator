@@ -1,0 +1,26 @@
+{
+  "name": "team_profile_generator",
+  "version": "1.0.0",
+  "description": "## Your Task",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jasonyoo3026/team_profile_generator.git"
+  },
+  "author": "Jason Yoo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jasonyoo3026/team_profile_generator/issues"
+  },
+  "homepage": "https://github.com/jasonyoo3026/team_profile_generator#readme",
+  "dependencies": {
+    "inquirer": "^8.2.4",
+    "jest": "^29.4.1"
+  }
+}
