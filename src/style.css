@@ -1,23 +1,17 @@
 header {
-    color: white;
-    background-color: rgb(228, 62, 84);
-    padding: 10px;
     display: flex;
     justify-content: center;
     font-size: 1em;
-    padding: 50px;
+    padding: 60px;
+    color: white;
+    background-color: rgb(228, 62, 84);
 }
 
 main {
     display: flex;
     flex-wrap: wrap;
-    margin: 15px;
     justify-content: center;
-}
-
-.card-header {
-    background-color: rgb(0, 115, 255);
-    color: white;
+    margin: 3em;
 }
 
 .card {
@@ -28,6 +22,12 @@ main {
     -ms-border-radius: 1rem;
     -o-border-radius: 1rem;
     overflow: hidden;
-    box-shadow: 0 6px 22px -14px rgba(0, 0, 0, 0.79);
+    box-shadow: 0 8px 24px -14px rgba(0, 0, 0, 0.79);
     margin: 2rem 1rem;
 }
+
+.card-header {
+    background-color: rgb(0, 115, 255);
+    color: white;
+}
+
