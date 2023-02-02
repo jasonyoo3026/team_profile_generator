@@ -1,12 +1,14 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 const path = require('path');
+const generateHtml = require('./src/template');
+const OUTPUT_DIR = path.resolve(__dirname, "output");
+const outputPath = path.join(OUTPUT_DIR, "index.html");
+
 const Manager = require('./lib/Manager.js');
 const Engineer = require('./lib/Engineer.js');
 const Intern = require('./lib/Intern.js');
-const generateHtml = require('./src/generate-site');
-const OUTPUT_DIR = path.resolve(__dirname, "output");
-const outputPath = path.join(OUTPUT_DIR, "index.html");
+
 const teamMembers = [];
 
 const createTeam = () => {
@@ -14,7 +16,7 @@ const createTeam = () => {
         {
             type: 'input',
             name: 'name',
-            message: 'What is your name?',
+            message: "What is the team manager's name?",
             validate: nameInput => {
                 if (nameInput) {
                     return true;
@@ -27,12 +29,12 @@ const createTeam = () => {
         {
             type: 'input',
             name: 'employeeId',
-            message: 'What is your employee ID?',
+            message: "What is the team manager's employee id?",
             validate: employeeId => {
                 if (employeeId) {
                     return true;
                 } else {
-                    console.log('You should provide employee ID');
+                    console.log('You should provide employee id');
                     return false;
                 }
             }
@@ -40,7 +42,7 @@ const createTeam = () => {
         {
             type: 'input',
             name: 'email',
-            message: 'Enter your email address',
+            message: "What is the team manager's email?",
             validate: email => {
                 if (email) {
                     return true;
@@ -53,7 +55,7 @@ const createTeam = () => {
         {
             type: 'input',
             name: 'officeNumber',
-            message: 'Enter your office number',
+            message: "What is the team manager's office number?",
             validate: officeNumber => {
                 if (officeNumber) {
                     return true;
@@ -76,16 +78,16 @@ const promptMenu = () => {
         {
             type: 'list',
             name: 'menu',
-            message: 'Please choose your next step:',
-            choices: ['add an engineer', 'add an intern', 'Complete the team!']
+            message: 'Which type of team member would you like to add?',
+            choices: ['Engineer', 'Intern', "I don't want to add any more team members"]
 
         }])
         .then(userChoice => {
             switch(userChoice.menu) {
-                case "add an engineer":
+                case "Engineer":
                     createEngineer();
                     break;
-                case "add an intern":
+                case "Intern":
                     createIntern();
                     break;
                 default:
@@ -95,18 +97,11 @@ const promptMenu = () => {
 };
 
 const createEngineer = () => {
-    console.log(
-        `
-        ===============
-        Add a new Engineer
-        ===============
-        `);
-
     return inquirer.prompt([
         {
             type: 'input',
             name: 'name',
-            message: 'What is name of the engineer?',
+            message: "What is your engineer's name?",
             validate: engineerName => {
                 if(engineerName) {
                     return true;
@@ -119,12 +114,12 @@ const createEngineer = () => {
         {
             type: 'input',
             name: 'employeeId',
-            message: 'Enter employee ID',
+            message: "What is your engineer's id?",
             validate: employeeId => {
                 if (employeeId) {
                     return true;
                 } else {
-                    console.log('Please enter employee ID');
+                    console.log('Please enter employee id');
                     return false;
                 }
             }
@@ -132,7 +127,7 @@ const createEngineer = () => {
         {
             type: 'input',
             name: 'email',
-            message: 'Enter email address',
+            message: "What is your engineer's email address?",
             validate: email => {
                 if (email) {
                     return true;
@@ -145,7 +140,7 @@ const createEngineer = () => {
         {
             type: 'input',
             name: 'github',
-            message: 'Enter github username',
+            message: "What is the engineer's Github username?",
             validate: github => {
                 if (github) {
                     return true;
@@ -164,18 +159,11 @@ const createEngineer = () => {
 };
 
 const createIntern= () => {
-    console.log(
-        `
-        ===============
-        Add a new Intern
-        ===============
-        `);
-
     return inquirer.prompt([
         {
             type: 'input',
             name: 'name',
-            message: 'What is name of the intern?',
+            message: "What is your intern's name?",
             validate: internName => {
                 if(internName) {
                     return true;
@@ -188,12 +176,12 @@ const createIntern= () => {
         {
             type: 'input',
             name: 'employeeId',
-            message: 'Enter employee ID',
+            message: "What is your intern's id?",
             validate: employeeId => {
                 if (employeeId) {
                     return true;
                 } else {
-                    console.log('Please enter employee ID');
+                    console.log('Please enter employee id');
                     return false;
                 }
             }
@@ -201,12 +189,12 @@ const createIntern= () => {
         {
             type: 'input',
             name: 'email',
-            message: 'Enter email address',
+            message: "What is your intern's email address?",
             validate: email => {
                 if (email) {
                     return true;
                 } else {
-                    console.log('Please enter your email address!');
+                    console.log('Please enter email address!');
                     return false;
                 }
             }
@@ -214,7 +202,7 @@ const createIntern= () => {
         {
             type: 'input',
             name: 'school',
-            message: 'Enter the name of your school',
+            message: "What is your intern's school?",
             validate: school => {
                 if (school) {
                     return true;
@@ -233,13 +221,8 @@ const createIntern= () => {
 };
 
 const buildTeam = () => {
-    console.log(`
-    ============================
-    Your team has been created!
-    ============================
-    `);
+    console.log('Your team has been created!');
 
-    // Create the output directory if the output path doesn't exist
     if(!fs.existsSync(OUTPUT_DIR)) {
         fs.mkdirSync(OUTPUT_DIR)
     }

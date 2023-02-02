@@ -1,10 +1,9 @@
 const generateTeam = (team) => {
-    console.log(team);
     const html = [];
     const createManager = manager => {
         console.log(manager);
         let managerHtml = `
-        <div class="card" style="width: 18rem;">
+        <div class="card">
             <div class="card-header">
                 ${manager.name} <br/>
                 <i class="fas fa-mug-hot"></i>Manager
@@ -18,13 +17,12 @@ const generateTeam = (team) => {
             </div>
         </div>
         `;
-    html.push(managerHtml);
+        html.push(managerHtml);
     }
 
     const createEngineer = engineer => {
-        console.log(engineer);
         let engineerHtml = `
-        <div class="card" style="width: 18rem;">
+        <div class="card">
             <div class="card-header">
                 ${engineer.name} <br/>
                 <i class="fas fa-glasses"></i>Engineer
@@ -42,12 +40,11 @@ const generateTeam = (team) => {
     }
 
     const createIntern = intern => {
-        console.log(intern);
         let internHtml = `
-        <div class="card" style="width: 18rem;">
+        <div class="card">
             <div class="card-header">
                 ${intern.name} <br/>
-                <i class="fas fa-mug-graduate"></i>Intern
+                <i class="fas fa-user-graduate"></i>Intern
             </div>
             <div>
                 <ul class="list-group list-group-flush">
@@ -61,7 +58,6 @@ const generateTeam = (team) => {
         html.push(internHtml);
     }
 
-    //create a loop for all of the employees
     for (let i=0; i<team.length; i++) {
         if(team[i].getRole() === "Manager") {
             createManager(team[i]);
@@ -72,11 +68,9 @@ const generateTeam = (team) => {
         }
     }
 
-    //join the HTML blocks
     return html.join('');
 }
 
-// export function to generate entire page
 module.exports = team => {
     return `
     <!DOCTYPE html>
