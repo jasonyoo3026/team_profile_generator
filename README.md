@@ -20,5 +20,6 @@ The following image shows a mock-up of the generated HTML’s appearance and fun
 ![HTML webpage titled “My Team” features five boxes listing employee names, titles, and other key info.](./Assets/demo.png)
 
 A walkthrough video can be found from a link below:
+https://drive.google.com/file/d/1l9ctK-p3o-RUaZygJkQjO_KH6cXtsKie/view
 
 
