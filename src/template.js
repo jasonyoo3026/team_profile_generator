@@ -1,7 +1,6 @@
 const generateTeam = (team) => {
     const html = [];
     const createManager = manager => {
-        console.log(manager);
         let managerHtml = `
         <div class="card">
             <div class="card-header">
@@ -58,15 +57,19 @@ const generateTeam = (team) => {
         html.push(internHtml);
     }
 
-    for (let i=0; i<team.length; i++) {
-        if(team[i].getRole() === "Manager") {
-            createManager(team[i]);
-        } else if(team[i].getRole() === "Engineer") {
-            createEngineer(team[i]);
-        } else if(team[i].getRole() === "Intern") {
-            createIntern(team[i]);
+    team.forEach(function(member) {
+        switch (member.getRole()) {
+          case "Manager":
+            createManager(member);
+            break;
+          case "Engineer":
+            createEngineer(member);
+            break;
+          case "Intern":
+            createIntern(member);
+            break;
         }
-    }
+      });
 
     return html.join('');
 }
